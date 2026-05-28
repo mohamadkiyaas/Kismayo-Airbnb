@@ -34,18 +34,18 @@ export default function ListingRail({ title, subtitle, listings, seeAllHref }) {
 
   return (
     <section className="py-4">
-      <div className="mb-3 flex items-end justify-between gap-3">
+      <div className="mb-2 flex items-end justify-between gap-3">
         <div>
-          <h2 className="flex items-center gap-1 text-xl font-bold md:text-2xl">
+          <h2 className="flex items-center gap-0.5 text-lg font-bold tracking-tight md:text-xl">
             {seeAllHref ? (
-              <Link to={seeAllHref} className="inline-flex items-center gap-1 hover:underline">
+              <Link to={seeAllHref} className="inline-flex items-center gap-0.5 hover:underline">
                 {title}
-                <Arrow className="h-5 w-5" />
+                <Arrow className="h-4 w-4" />
               </Link>
             ) : (
               <>
                 {title}
-                <Arrow className="h-5 w-5" />
+                <Arrow className="h-4 w-4" />
               </>
             )}
           </h2>
@@ -74,12 +74,12 @@ export default function ListingRail({ title, subtitle, listings, seeAllHref }) {
       </div>
       <div
         ref={ref}
-        className="no-scrollbar -mx-4 flex snap-x snap-mandatory gap-4 overflow-x-auto px-4 pb-2 md:mx-0 md:px-0"
+        className="no-scrollbar -mx-4 flex snap-x snap-mandatory gap-3 overflow-x-auto px-4 pb-2 md:mx-0 md:px-0"
       >
         {listings.map((l) => (
           <div
             key={l._id}
-            className="w-[68%] shrink-0 snap-start sm:w-[40%] md:w-[28%] lg:w-[18%]"
+            className="w-[60%] shrink-0 snap-start sm:w-[33%] md:w-[22%] lg:w-[16%] xl:w-[13.2%]"
           >
             <ListingCard listing={l} />
           </div>

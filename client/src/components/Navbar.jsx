@@ -29,16 +29,14 @@ export default function Navbar() {
     <header className="sticky top-0 z-40 border-b border-gray-200 bg-white/95 backdrop-blur">
       <div className="mx-auto max-w-7xl px-4 md:px-6">
         <div className="flex items-center justify-between gap-4 py-3">
-          <Link to="/" className="flex items-center gap-2 text-brand-500">
-            <svg viewBox="0 0 32 32" className="h-8 w-8" fill="currentColor" aria-hidden>
-              <path d="M16 3c-.7 0-1.4.4-1.7 1l-9 16c-1.4 2.5.4 5.5 3.3 5.5h15c2.9 0 4.7-3 3.3-5.5l-9-16C17.4 3.4 16.7 3 16 3zm0 4.1L24 21H8l8-13.9z" />
+          <Link to="/" className="flex items-center gap-1 text-brand-500" aria-label="Home">
+            <svg viewBox="0 0 32 32" className="h-8 w-8 shrink-0" fill="currentColor" aria-hidden>
+              <path d="M16 1c-2.5 0-4.4 1.5-6 4l-7.5 13.4C1.2 20.7 1 22 1 23.4 1 27.6 4.1 31 8.4 31c1.7 0 3.3-.5 4.7-1.5 1 .7 2 1.2 3 1.2s2-.5 3-1.2c1.4 1 3 1.5 4.7 1.5 4.3 0 7.4-3.4 7.4-7.6 0-1.4-.2-2.7-1.5-5L22 5c-1.6-2.5-3.5-4-6-4zm0 2.5c1.7 0 3 1 4.2 3l7.5 13.4c1 1.8 1.3 2.7 1.3 3.6 0 2.8-2 4.8-4.8 4.8-1.4 0-2.5-.5-3.7-1.5 2-2 3.5-4.5 3.5-7.3 0-2-1.5-3.5-3.5-3.5s-3.5 1.5-3.5 3.5c0 .8.2 1.5.5 2.3-1 1.2-2 2.3-3 3-1-.7-2-1.8-3-3 .3-.8.5-1.5.5-2.3 0-2-1.5-3.5-3.5-3.5S5 16.5 5 18.5c0 2.8 1.5 5.3 3.5 7.3-1.2 1-2.3 1.5-3.7 1.5-2.8 0-4.8-2-4.8-4.8 0-.9.3-1.8 1.3-3.6L8.8 5.5c1.2-2 2.5-3 4.2-3z"/>
             </svg>
-            <span className="hidden text-xl font-extrabold tracking-tight md:inline">
-              kismayo<span className="text-gray-900">airbnb</span>
-            </span>
+            <span className="hidden text-2xl font-bold tracking-tight md:inline">airbnb</span>
           </Link>
 
-          <nav className="hidden flex-1 items-center justify-center gap-1 lg:flex">
+          <nav className="hidden flex-1 items-center justify-center gap-2 md:flex">
             {TOP_TABS.map((t) => (
               <NavLink
                 key={t.id}
@@ -53,13 +51,13 @@ export default function Navbar() {
               >
                 {({ isActive }) => (
                   <>
-                    <span className="text-lg">{t.icon}</span>
-                    <span>{t.label}</span>
                     {t.badge && (
-                      <span className="rounded-full bg-blue-100 px-1.5 text-[10px] font-bold uppercase text-blue-700">
+                      <span className="absolute -top-1.5 left-1/2 -translate-x-1/2 -rotate-12 rounded-md bg-brand-500 px-1.5 py-0.5 text-[9px] font-bold uppercase tracking-tight text-white shadow-sm">
                         {t.badge}
                       </span>
                     )}
+                    <span className="text-lg">{t.icon}</span>
+                    <span>{t.label}</span>
                     {isActive && (
                       <span className="absolute inset-x-3 -bottom-3 h-0.5 rounded-full bg-gray-900" />
                     )}

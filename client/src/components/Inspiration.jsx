@@ -14,49 +14,72 @@ const TABS = [
 ];
 
 const POPULAR = [
-  { city: 'Kismayo', subtitle: 'Beach villas' },
-  { city: 'Mogadishu', subtitle: 'Seaside suites' },
-  { city: 'Nairobi', subtitle: 'City apartments' },
-  { city: 'Lamu', subtitle: 'Swahili stone houses' },
-  { city: 'Diani', subtitle: 'Beach bungalows' },
-  { city: 'Zanzibar', subtitle: 'Island retreats' },
-  { city: 'Addis Ababa', subtitle: 'Mountain lodges' },
-  { city: 'Cape Town', subtitle: 'City studios' },
-  { city: 'Dubai', subtitle: 'High-rises' },
-  { city: 'Merzouga', subtitle: 'Desert glamping' },
+  { city: 'Dallas', subtitle: 'House rentals' },
+  { city: 'Cleveland', subtitle: 'Villa rentals' },
+  { city: 'North Myrtle Beach', subtitle: 'Monthly rentals' },
+  { city: 'Portland', subtitle: 'Apartment rentals' },
+  { city: 'Nice', subtitle: 'House rentals' },
+  { city: 'Barcelona', subtitle: 'Condo rentals' },
+  { city: 'Galveston', subtitle: 'Monthly rentals' },
+  { city: 'Kauai', subtitle: 'House rentals' },
+  { city: 'Portland', subtitle: 'Monthly rentals' },
+  { city: 'Minneapolis', subtitle: 'Vacation rentals' },
+  { city: 'Raleigh', subtitle: 'Vacation rentals' },
+  { city: 'Philadelphia', subtitle: 'Vacation rentals' },
+  { city: 'Orange Beach', subtitle: 'Vacation rentals' },
+  { city: 'Amsterdam', subtitle: 'House rentals' },
+  { city: 'Gulf Shores', subtitle: 'Vacation rentals' },
+  { city: 'Tokyo', subtitle: 'House rentals' },
+  { city: 'West Palm Beach', subtitle: 'Condo rentals' },
+];
+
+const ARTS = [
+  { city: 'Paris', subtitle: 'Museums & galleries' },
+  { city: 'Florence', subtitle: 'Renaissance art' },
+  { city: 'Lamu', subtitle: 'UNESCO old town' },
+  { city: 'Kyoto', subtitle: 'Temples & gardens' },
+  { city: 'Berlin', subtitle: 'Modern art scene' },
+  { city: 'Nairobi', subtitle: 'Museums & galleries' },
 ];
 
 const BEACH = [
+  { city: 'Malibu', subtitle: 'Pacific Coast' },
   { city: 'Kismayo', subtitle: 'Lido Beach' },
-  { city: 'Lamu', subtitle: 'Old town shoreline' },
+  { city: 'Bali', subtitle: 'Tropical shores' },
   { city: 'Diani', subtitle: 'White sand' },
   { city: 'Zanzibar', subtitle: 'Nungwi' },
-  { city: 'Mogadishu', subtitle: 'Liido Beach' },
+  { city: 'Maui', subtitle: 'North Shore' },
 ];
 
 const MOUNTAINS = [
-  { city: 'Addis Ababa', subtitle: 'Entoto Hills' },
+  { city: 'Aspen', subtitle: 'Ski lodges' },
+  { city: 'Banff', subtitle: 'Canadian Rockies' },
   { city: 'Cape Town', subtitle: 'Table Mountain' },
+  { city: 'Addis Ababa', subtitle: 'Entoto Hills' },
 ];
 
-const DESERT = [{ city: 'Merzouga', subtitle: 'Sahara dunes' }];
+const OUTDOORS = [
+  { city: 'Aspen', subtitle: 'Hiking trails' },
+  { city: 'Banff', subtitle: 'Lakes & forests' },
+  { city: 'Bali', subtitle: 'Surfing' },
+  { city: 'Merzouga', subtitle: 'Sahara dunes' },
+  { city: 'Nairobi', subtitle: 'Safari gateways' },
+];
 
 const TAB_DATA = {
   Popular: POPULAR,
-  'Arts & culture': [
-    { city: 'Lamu', subtitle: 'UNESCO old town' },
-    { city: 'Nairobi', subtitle: 'Museums & galleries' },
-    { city: 'Cape Town', subtitle: 'V&A Waterfront' },
-  ],
+  'Arts & culture': ARTS,
   Beach: BEACH,
   Mountains: MOUNTAINS,
-  Outdoors: [...BEACH, ...MOUNTAINS, ...DESERT],
-  'Things to do': POPULAR.slice(0, 6),
-  'Travel tips & inspiration': POPULAR.slice(0, 4),
+  Outdoors: OUTDOORS,
+  'Things to do': POPULAR.slice(0, 10),
+  'Travel tips & inspiration': POPULAR.slice(0, 6),
   'Airbnb-friendly apartments': [
-    { city: 'Nairobi', subtitle: 'Westlands' },
-    { city: 'Cape Town', subtitle: 'Gardens' },
-    { city: 'Dubai', subtitle: 'Marina' },
+    { city: 'New York', subtitle: 'Apartments' },
+    { city: 'Paris', subtitle: 'Apartments' },
+    { city: 'London', subtitle: 'Apartments' },
+    { city: 'Tokyo', subtitle: 'Apartments' },
+    { city: 'Barcelona', subtitle: 'Apartments' },
   ],
 };
 
@@ -67,18 +90,20 @@ export default function Inspiration() {
   return (
     <section className="border-t border-gray-200 bg-gray-50">
       <div className="mx-auto max-w-7xl px-4 py-10 md:px-6">
-        <h2 className="text-xl font-bold md:text-2xl">Inspiration for future getaways</h2>
+        <h2 className="text-xl font-bold md:text-2xl">
+          Inspiration for future getaways
+        </h2>
 
-        <div className="no-scrollbar mt-4 -mx-4 flex gap-6 overflow-x-auto border-b border-gray-200 px-4 md:mx-0 md:px-0">
+        <div className="no-scrollbar -mx-4 mt-4 flex gap-6 overflow-x-auto border-b border-gray-200 px-4 md:mx-0 md:px-0">
           {TABS.map((t) => (
             <button
               key={t}
               type="button"
               onClick={() => setTab(t)}
               className={clsx(
-                'shrink-0 border-b-2 pb-3 text-sm font-semibold transition',
+                'shrink-0 border-b-2 pb-3 text-sm transition',
                 tab === t
-                  ? 'border-gray-900 text-gray-900'
+                  ? 'border-gray-900 font-semibold text-gray-900'
                   : 'border-transparent text-gray-500 hover:text-gray-800'
               )}
             >
@@ -87,20 +112,25 @@ export default function Inspiration() {
           ))}
         </div>
 
-        <div className="mt-5 grid grid-cols-2 gap-x-6 gap-y-3 text-sm sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6">
-          {items.map((item) => (
+        <div className="mt-6 grid grid-cols-2 gap-x-6 gap-y-4 text-sm sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5">
+          {items.map((item, i) => (
             <Link
-              key={`${item.city}-${item.subtitle}`}
+              key={`${item.city}-${item.subtitle}-${i}`}
               to={`/search?city=${encodeURIComponent(item.city)}`}
               className="group"
             >
-              <div className="font-semibold text-gray-900 group-hover:underline">{item.city}</div>
+              <div className="font-semibold text-gray-900 group-hover:underline">
+                {item.city}
+              </div>
               <div className="text-gray-500">{item.subtitle}</div>
             </Link>
           ))}
         </div>
 
-        <button type="button" className="mt-6 inline-flex items-center gap-1 text-sm font-semibold text-gray-800 hover:underline">
+        <button
+          type="button"
+          className="mt-6 inline-flex items-center gap-1 text-sm font-semibold text-gray-800 hover:underline"
+        >
           Show more
           <span aria-hidden>›</span>
         </button>

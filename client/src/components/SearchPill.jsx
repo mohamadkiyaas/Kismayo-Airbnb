@@ -55,7 +55,7 @@ export default function SearchPill() {
     <div ref={wrapRef} className="relative">
       <div
         className={clsx(
-          'mx-auto flex max-w-2xl items-center divide-x divide-gray-200 rounded-full border border-gray-200 bg-white text-sm shadow-sm transition hover:shadow-md',
+          'mx-auto flex max-w-3xl items-center rounded-full border border-gray-200 bg-white text-sm shadow-[0_1px_2px_rgba(0,0,0,0.08),_0_4px_12px_rgba(0,0,0,0.05)] transition hover:shadow-md',
           open && 'shadow-md'
         )}
       >
@@ -63,46 +63,53 @@ export default function SearchPill() {
           type="button"
           onClick={() => focusSegment('where')}
           className={clsx(
-            'flex-1 rounded-full px-6 py-3 text-left transition',
-            active === 'where' && 'bg-gray-100'
+            'flex-[1.2] rounded-full px-7 py-3 text-left transition',
+            active === 'where' ? 'bg-white shadow-md' : 'hover:bg-gray-50'
           )}
         >
-          <div className="text-[11px] font-bold uppercase tracking-wide">Where</div>
-          <div className={clsx('mt-0.5 truncate text-sm', where ? 'text-gray-900' : 'text-gray-500')}>
+          <div className="text-[12px] font-semibold text-gray-900">Where</div>
+          <div
+            className={clsx(
+              'truncate text-sm',
+              where ? 'text-gray-900' : 'text-gray-500'
+            )}
+          >
             {where || 'Search destinations'}
           </div>
         </button>
+        <div className="h-7 w-px shrink-0 bg-gray-200" />
         <button
           type="button"
           onClick={() => focusSegment('when')}
           className={clsx(
-            'flex-1 px-6 py-3 text-left transition',
-            active === 'when' && 'bg-gray-100'
+            'flex-1 rounded-full px-7 py-3 text-left transition',
+            active === 'when' ? 'bg-white shadow-md' : 'hover:bg-gray-50'
           )}
         >
-          <div className="text-[11px] font-bold uppercase tracking-wide">When</div>
+          <div className="text-[12px] font-semibold text-gray-900">When</div>
           <div
             className={clsx(
-              'mt-0.5 truncate text-sm',
+              'truncate text-sm',
               checkIn ? 'text-gray-900' : 'text-gray-500'
             )}
           >
             {datesLabel}
           </div>
         </button>
+        <div className="h-7 w-px shrink-0 bg-gray-200" />
         <button
           type="button"
           onClick={() => focusSegment('who')}
           className={clsx(
-            'flex flex-1 items-center justify-between rounded-full px-6 py-2 text-left transition',
-            active === 'who' && 'bg-gray-100'
+            'flex flex-1 items-center justify-between rounded-full py-2 pl-7 pr-2 text-left transition',
+            active === 'who' ? 'bg-white shadow-md' : 'hover:bg-gray-50'
           )}
         >
-          <div>
-            <div className="text-[11px] font-bold uppercase tracking-wide">Who</div>
+          <div className="min-w-0">
+            <div className="text-[12px] font-semibold text-gray-900">Who</div>
             <div
               className={clsx(
-                'mt-0.5 truncate text-sm',
+                'truncate text-sm',
                 guests > 1 ? 'text-gray-900' : 'text-gray-500'
               )}
             >
@@ -113,9 +120,9 @@ export default function SearchPill() {
             onClick={submit}
             role="button"
             aria-label="Search"
-            className="ml-3 grid h-9 w-9 place-items-center rounded-full bg-brand-500 text-white shadow"
+            className="ml-3 grid h-11 w-11 shrink-0 place-items-center rounded-full bg-brand-500 text-white shadow transition hover:bg-brand-600"
           >
-            <Search className="h-4 w-4" />
+            <Search className="h-4 w-4" strokeWidth={2.5} />
           </span>
         </button>
       </div>

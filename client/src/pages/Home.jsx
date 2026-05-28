@@ -9,8 +9,16 @@ import Inspiration from '../components/Inspiration.jsx';
 const RAIL_ORDER = [
   { city: 'Kismayo', title: 'Popular homes in Kismayo' },
   { city: 'Mogadishu', title: 'Stay in Mogadishu' },
-  { city: 'Nairobi', title: 'Homes in Nairobi' },
+  { city: 'Nairobi', title: 'Popular homes in Nairobi' },
+  { city: 'London', title: 'Featured hotels in London', subtitle: 'A collection of independent and handpicked hotels' },
   { city: 'Lamu', title: 'Featured stays in Lamu' },
+  { city: 'Paris', title: 'Stay in Paris' },
+  { city: 'Tokyo', title: 'Homes in Tokyo' },
+  { city: 'New York', title: 'Homes in New York' },
+  { city: 'Bali', title: 'Tropical escapes in Bali' },
+  { city: 'Malibu', title: 'Beachfront in Malibu' },
+  { city: 'Aspen', title: 'Mountain cabins in Aspen' },
+  { city: 'San Francisco', title: 'Stays in San Francisco' },
   { city: 'Zanzibar', title: 'Islands of Zanzibar' },
   { city: 'Cape Town', title: 'Cape Town favorites' },
   { city: 'Dubai', title: 'Dubai high-rises' },
@@ -56,11 +64,11 @@ export default function Home() {
       <section className="mx-auto max-w-7xl px-4 md:px-6">
         <CategoryBar value={category} onChange={setCategory} />
 
-        <div className="pb-12">
+        <div className="pb-12 pt-2">
           {isLoading ? (
             <ListingGrid loading />
           ) : showRails ? (
-            <div className="divide-y divide-gray-100">
+            <div className="space-y-2 divide-y divide-gray-100">
               {railSections.map((s) => (
                 <ListingRail
                   key={s.city}

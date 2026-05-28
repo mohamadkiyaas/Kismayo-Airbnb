@@ -48,27 +48,39 @@ export default function ListingCard({ listing }) {
   };
 
   const isGuestFavorite = listing.rating >= 4.8 && listing.reviewCount >= 5;
+  const typeLabel = listing.type ? listing.type.charAt(0).toUpperCase() + listing.type.slice(1) : 'Stay';
+  const cityShort = listing.location?.city || listing.location?.country || '';
+  const cardTitle = `${typeLabel} in ${cityShort}`;
 
   return (
     <Link to={`/listings/${listing._id}`} className="group block">
-      <div className="relative aspect-[1/1] overflow-hidden rounded-2xl bg-gray-100">
+      <div className="relative aspect-square overflow-hidden rounded-xl bg-gray-100">
         <img
           src={images[idx].url}
           alt={listing.title}
           loading="lazy"
           className="h-full w-full object-cover transition-transform duration-300 group-hover:scale-[1.02]"
+          onError={(e) => {
+            e.currentTarget.src = 'https://placehold.co/600x600?text=Photo';
+          }}
         />
         {isGuestFavorite && (
-          <span className="absolute left-3 top-3 rounded-full bg-white px-2.5 py-1 text-[11px] font-semibold text-gray-900 shadow">
+          <span className="absolute left-2 top-2 rounded-full bg-white/95 px-2.5 py-1 text-[11px] font-semibold text-gray-900 shadow-sm">
             Guest favorite
           </span>
         )}
         <button
           onClick={onLike}
           aria-label="Add to wishlist"
-          className="absolute right-3 top-3 grid h-9 w-9 place-items-center rounded-full bg-black/30 text-white backdrop-blur transition hover:scale-110"
+          className="absolute right-2 top-2 grid h-7 w-7 place-items-center text-white transition hover:scale-110"
         >
-          <Heart className={clsx('h-5 w-5', liked && 'fill-brand-500 text-brand-500')} />
+          <Heart
+            className={clsx(
+              'h-6 w-6 drop-shadow-[0_1px_2px_rgba(0,0,0,0.45)]',
+              liked ? 'fill-brand-500 stroke-white' : 'fill-black/40 stroke-white'
+            )}
+            strokeWidth={2}
+          />
         </button>
         {images.length > 1 && (
           <>
@@ -100,27 +112,20 @@ export default function ListingCard({ listing }) {
           </>
         )}
       </div>
-      <div className="mt-2 space-y-0.5">
-        <div className="flex items-baseline justify-between gap-2">
-          <h3 className="truncate font-semibold text-gray-900">
-            {listing.location?.city}, {listing.location?.country}
-          </h3>
-          {listing.rating > 0 && (
-            <div className="flex shrink-0 items-center gap-1 text-sm">
-              <Star className="h-3.5 w-3.5 fill-current" />
-              <span>{listing.rating.toFixed(1)}</span>
-            </div>
-          )}
-        </div>
-        <div className="truncate text-sm text-gray-500">{listing.title}</div>
-        <div className="text-sm text-gray-500 capitalize">
-          {listing.type} · {listing.maxGuests} guests
-        </div>
-        <div className="pt-1 text-sm">
+      <div className="mt-2">
+        <h3 className="truncate text-[15px] font-semibold text-gray-900">{cardTitle}</h3>
+        <div className="mt-0.5 flex items-center gap-1 text-[13px] text-gray-600">
           <span className="font-semibold text-gray-900">
-            {formatMoney(listing.pricePerNight, listing.currency)}
-          </span>{' '}
-          <span className="text-gray-600">night</span>
+            {formatMoney((listing.pricePerNight || 0) * 2, listing.currency)}
+          </span>
+          <span>for 2 nights</span>
+          {listing.rating > 0 && (
+            <>
+              <span aria-hidden>·</span>
+              <Star className="h-3 w-3 fill-current text-gray-900" />
+              <span className="text-gray-900">{listing.rating.toFixed(2)}</span>
+            </>
+          )}
         </div>
       </div>
     </Link>

@@ -1,55 +1,83 @@
 import { Globe, Facebook, Twitter, Instagram } from 'lucide-react';
 
+const SUPPORT = [
+  'Help Center',
+  'Get help with a safety issue',
+  'AirCover',
+  'Travel insurance',
+  'Anti-discrimination',
+  'Disability support',
+  'Cancellation options',
+  'Report neighborhood concern',
+];
+
+const HOSTING = [
+  'Airbnb your home',
+  'Airbnb your experience',
+  'Airbnb your service',
+  'AirCover for Hosts',
+  'Hosting resources',
+  'Community forum',
+  'Hosting responsibly',
+  'Airbnb-friendly apartments',
+  'Join a free hosting class',
+  'Find an co-host',
+  'Refer a Host',
+];
+
+const AIRBNB = [
+  '2026 Summer Release',
+  'Newsroom',
+  'Careers',
+  'Investors',
+  'Gift cards',
+  'Airbnb.org emergency stays',
+];
+
+function Column({ heading, items }) {
+  return (
+    <div>
+      <h4 className="mb-4 text-sm font-semibold text-gray-900">{heading}</h4>
+      <ul className="space-y-3 text-sm text-gray-700">
+        {items.map((label) => (
+          <li key={label} className="hover:underline cursor-pointer">
+            {label}
+          </li>
+        ))}
+      </ul>
+    </div>
+  );
+}
+
 export default function Footer() {
   return (
-    <footer className="mt-12 border-t border-gray-200 bg-gray-50">
-      <div className="mx-auto grid max-w-7xl gap-8 px-4 py-10 sm:grid-cols-2 md:grid-cols-4 md:px-6">
-        <div>
-          <h4 className="mb-3 font-semibold">Support</h4>
-          <ul className="space-y-2 text-sm text-gray-600">
-            <li>Help Centre</li>
-            <li>AirCover</li>
-            <li>Safety information</li>
-            <li>Cancellation options</li>
-          </ul>
-        </div>
-        <div>
-          <h4 className="mb-3 font-semibold">Community</h4>
-          <ul className="space-y-2 text-sm text-gray-600">
-            <li>Diversity & belonging</li>
-            <li>Refugee stays</li>
-            <li>Combating discrimination</li>
-          </ul>
-        </div>
-        <div>
-          <h4 className="mb-3 font-semibold">Hosting</h4>
-          <ul className="space-y-2 text-sm text-gray-600">
-            <li>Try hosting</li>
-            <li>AirCover for Hosts</li>
-            <li>Explore hosting resources</li>
-          </ul>
-        </div>
-        <div>
-          <h4 className="mb-3 font-semibold">About</h4>
-          <ul className="space-y-2 text-sm text-gray-600">
-            <li>Newsroom</li>
-            <li>Careers</li>
-            <li>Investors</li>
-          </ul>
-        </div>
+    <footer className="mt-12 border-t border-gray-200 bg-white">
+      <div className="mx-auto grid max-w-7xl gap-10 px-4 py-12 sm:grid-cols-3 md:px-6">
+        <Column heading="Support" items={SUPPORT} />
+        <Column heading="Hosting" items={HOSTING} />
+        <Column heading="Airbnb" items={AIRBNB} />
       </div>
       <div className="border-t border-gray-200">
-        <div className="mx-auto flex max-w-7xl flex-col items-center justify-between gap-3 px-4 py-5 text-sm text-gray-600 md:flex-row md:px-6">
-          <div>© {new Date().getFullYear()} Kismayo Airbnb · Privacy · Terms · Sitemap</div>
+        <div className="mx-auto flex max-w-7xl flex-col items-center justify-between gap-3 px-4 py-5 text-sm text-gray-700 md:flex-row md:px-6">
+          <div className="flex flex-wrap items-center gap-2">
+            <span>© {new Date().getFullYear()} Airbnb, Inc.</span>
+            <span aria-hidden>·</span>
+            <span className="hover:underline cursor-pointer">Privacy</span>
+            <span aria-hidden>·</span>
+            <span className="hover:underline cursor-pointer">Terms</span>
+            <span aria-hidden>·</span>
+            <span className="hover:underline cursor-pointer">Your Privacy Choices</span>
+          </div>
           <div className="flex items-center gap-4">
-            <button className="inline-flex items-center gap-1 font-semibold">
-              <Globe className="h-4 w-4" /> English (US)
+            <button className="inline-flex items-center gap-1 font-semibold hover:underline">
+              <Globe className="h-4 w-4" />
+              English (US)
             </button>
-            <span>$ USD</span>
-            <div className="flex items-center gap-3">
-              <Facebook className="h-4 w-4" />
-              <Twitter className="h-4 w-4" />
-              <Instagram className="h-4 w-4" />
+            <span className="font-semibold">$ USD</span>
+            <div className="flex items-center gap-3 text-gray-700">
+              <Facebook className="h-4 w-4 cursor-pointer" />
+              <Twitter className="h-4 w-4 cursor-pointer" />
+              <Instagram className="h-4 w-4 cursor-pointer" />
             </div>
           </div>
         </div>
