@@ -1,0 +1,22 @@
+{
+  "name": "kismayo-airbnb",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Full-stack Airbnb clone (MERN) — Kismayo Airbnb",
+  "workspaces": [
+    "client",
+    "server"
+  ],
+  "scripts": {
+    "dev": "concurrently -k -n server,client -c blue,green \"npm run dev -w server\" \"npm run dev -w client\"",
+    "start": "npm run dev",
+    "build": "npm run build -w client && npm run build -w server",
+    "seed": "npm run seed -w server",
+    "lint": "npm run lint -w client && npm run lint -w server",
+    "docker:up": "docker compose up --build",
+    "docker:down": "docker compose down"
+  },
+  "devDependencies": {
+    "concurrently": "^8.2.2"
+  }
+}
